@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>OrganizaAí</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Barra lateral -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="toggle" onclick="toggleSidebar()">☰</div>
+
+
+    <!--Tentando adicionar uma materia-->
+    <div class="menu">
+      <p style="color:white; font-size:12px;">MATÉRIAS</p>
+      <button onclick="addMateria()">+ Nova Matéria</button>
+    </div>
+
+  </aside>
+
+  <!-- Parte principal da pagina -->
+  <div class="main">
+
+    <!-- Barra superior,essa barra vai ter as cores da uni -->
+    <header class="topbar">
+      OrganizaAí - Minhas Matérias
+    </header>
+
+    <!-- Cards -->
+    <div class="home"></div>
+
+  </div>
+
+</div>
+
+<script>
+/* Abrir a sidebar */
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+/* Tentando usar local storage  */
+function getMaterias() {
+  try {
+    return JSON.parse(localStorage.getItem("materias")) || [
+      "VEXT", "FDIA", "FSO", "ESD", "FGSI"
+    ];
+  } catch {
+    return ["VEXT", "FDIA", "FSO", "ESD", "FGSI"];
+  }
+}
+
+function saveMaterias(lista) {
+  localStorage.setItem("materias", JSON.stringify(lista));
+}
+
+/* =========================
+   RENDERIZAÇÃO DOS CARDS
+========================= */
+function renderMaterias() {
+  const container = document.querySelector(".home");
+  container.innerHTML = "";
+
+  const materias = getMaterias();
+
+  materias.forEach(m => {
+    const div = document.createElement("div");
+    div.className = "card";
+
+    // Contador de tarefas
+    const data = JSON.parse(localStorage.getItem("kanban_" + m)) || {};
+    const total =
+  (data.todo?.match(/class="task"/g) || []).length +
+  (data.doing?.match(/class="task"/g) || []).length +
+  (data.done?.match(/class="task"/g) || []).length;
+
+    div.innerText = `${m} (${total})`;
+    div.onclick = () => openBoard(m);
+
+    container.appendChild(div);
+  });
+}
+
+/* =========================
+   ADICIONAR MATÉRIA
+========================= */
+function addMateria() {
+  const nome = prompt("Nome da nova matéria:");
+  if (!nome || nome.trim() === "") return;
+
+  const nomeFormatado = nome.trim().toUpperCase();
+  const materias = getMaterias();
+
+  if (materias.includes(nomeFormatado)) {
+    alert("Essa matéria já existe!");
+    return;
+  }
+
+  materias.push(nomeFormatado);
+  saveMaterias(materias);
+  renderMaterias();
+}
+
+/* =========================
+   NAVEGAÇÃO
+========================= */
+function openBoard(materia) {
+  localStorage.setItem("materia", materia);
+  window.location.href = "board.html";
+}
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  renderMaterias();
+});
+</script>
+
+</body>
+</html>

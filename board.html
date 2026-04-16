@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>OrganizaAí</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Inicio dos boards de Done,doing and done -->
+  <div class="column">
+        <h2>A Fazer</h2>
+        <div class="tasks" id="Afazer"></div>
+        <button onclick="addTask('A fazer')">+ Adicionar</button>
+      </div>
+
+ <div class="column">
+        <h2>Fazendo</h2>
+        <div class="tasks" id="Fazendo"></div>
+        <button onclick="addTask('Fazendo')">+ Adicionar</button>
+      </div>
+
+ <div class="column">
+        <h2>Feito</h2>
+        <div class="tasks" id="Feito"></div>
+        <button onclick="addTask('Feito')">+ Adicionar</button>
+      </div>
+
+       </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+/*MAIS SIDEBAR*/
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+/* =========================
+   VOLTAR PRA HOME
+========================= */
+function voltarHome() {
+  window.location.href = "index.html";
+}
+
+/* TÍTULO DINAMICO PRA MOSTRAR O NOME DA MATERIA */
+document.addEventListener("DOMContentLoaded", () => {
+  const materia = localStorage.getItem("materia") || "Geral";
+  const titulo = document.getElementById("titulo");
+  
+  if (titulo) {
+    titulo.innerText = "OrganizaAí • " + materia;
+  }
+});
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
