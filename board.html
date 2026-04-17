@@ -7,26 +7,47 @@
 </head>
 <body>
 
-<!-- Inicio dos boards de Done,doing and done -->
-  <div class="column">
+<div class="layout">
+
+  <!-- Sidebar, mais uma -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="toggle" onclick="toggleSidebar()">☰</div>
+
+    <div class="menu">
+      <p style="color:white; font-size:12px;">MENU</p>
+      <button onclick="voltarHome()">Home</button>
+    </div>
+
+  </aside>
+
+  <div class="main">
+
+    <!-- Topo dinamico -->
+    <header class="topbar" id="titulo">
+      OrganizaAí
+    </header>
+
+    <!-- Board -->
+    <div class="board">
+
+      <div class="column">
         <h2>A Fazer</h2>
-        <div class="tasks" id="Afazer"></div>
-        <button onclick="addTask('A fazer')">+ Adicionar</button>
+        <div class="tasks" id="afazer"></div>
+        <button onclick="addTask('afazer')">+ Adicionar</button>
       </div>
 
- <div class="column">
+      <div class="column">
         <h2>Fazendo</h2>
-        <div class="tasks" id="Fazendo"></div>
-        <button onclick="addTask('Fazendo')">+ Adicionar</button>
+        <div class="tasks" id="fazendo"></div>
+        <button onclick="addTask('fazendo')">+ Adicionar</button>
       </div>
 
- <div class="column">
-        <h2>Feito</h2>
-        <div class="tasks" id="Feito"></div>
-        <button onclick="addTask('Feito')">+ Adicionar</button>
+      <div class="column">
+        <h2>Concluído</h2>
+        <div class="tasks" id="feito"></div>
+        <button onclick="addTask('feito')">+ Adicionar</button>
       </div>
-
-       </div>
 
     </div>
 
@@ -35,19 +56,17 @@
 </div>
 
 <script>
-/*MAIS SIDEBAR*/
+/*Sidebar novamente*/
 function toggleSidebar() {
   document.getElementById("sidebar").classList.toggle("open");
 }
 
-/* =========================
-   VOLTAR PRA HOME
-========================= */
+/*Voltando pra home */
 function voltarHome() {
   window.location.href = "index.html";
 }
 
-/* TÍTULO DINAMICO PRA MOSTRAR O NOME DA MATERIA */
+/* Pra cada pagina mudar o titulo de acordo com a materia */
 document.addEventListener("DOMContentLoaded", () => {
   const materia = localStorage.getItem("materia") || "Geral";
   const titulo = document.getElementById("titulo");
