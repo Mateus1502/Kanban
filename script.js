@@ -1,39 +1,36 @@
+
 let draggedTask = null;
 const materia = localStorage.getItem("materia") || "Geral";
 
 
 
 //Funcao responsvael por localstorage com chave dinamica
-//A chave serve
 function getKey() {
   return "kanban_" + materia;
 }
 
 
-//Funcao pra salvar dado no local storage(pls work)
+///Salvar em localstorage
 function saveData() {
   const data = {
-    todo: document.getElementById("todo").innerHTML,
-    doing: document.getElementById("doing").innerHTML,
-    done: document.getElementById("done").innerHTML
+    todo: document.getElementById("afazer").innerHTML,
+    doing: document.getElementById("fazendo").innerHTML,
+    done: document.getElementById("feito").innerHTML
   };
   localStorage.setItem(getKey(), JSON.stringify(data));
 }
 
-
-//Agora carrega
+//Load dos 
 function loadData() {
   const data = JSON.parse(localStorage.getItem(getKey()));
   if (data) {
-    document.getElementById("todo").innerHTML = data.todo;
-    document.getElementById("doing").innerHTML = data.doing;
-    document.getElementById("done").innerHTML = data.done;
+    document.getElementById("afazer").innerHTML = data.todo;
+    document.getElementById("fazendo").innerHTML = data.doing;
+    document.getElementById("feito").innerHTML = data.done;
     addDragEvents();
   }
 }
 
-
-//Adiciona tarefa
 function addTask(column) {
   const text = prompt("Digite a tarefa:");
   if (!text) return;
@@ -49,23 +46,18 @@ function addTask(column) {
   saveData();
 }
 
-
-//Adicionar tarefas com um drag and drop
 function addEvents(task) {
   task.addEventListener("dragstart", () => {
     draggedTask = task;
   });
 }
 
-//Adicionando com o drag
 function addDragEvents() {
   document.querySelectorAll(".task").forEach(task => {
     addEvents(task);
   });
 }
 
-
-//Dragover
 document.querySelectorAll(".tasks").forEach(column => {
   column.addEventListener("dragover", e => e.preventDefault());
 
