@@ -1,8 +1,6 @@
-/*
-    1. CONFIGURAÇÕES GLOBAIS
-    */
+/*  Fiz uma parte de configs gerais de design, vi isso em um curso sobre poder nao repetir as mesmas coisas varias vezes*/
 * {
-  box-sizing: border-box; /* Garante que padding não quebre a largura */
+  box-sizing: border-box; /* Protegendo quebra de largura */
 }
 
 body {
@@ -16,7 +14,7 @@ body {
   flex-direction: column;
 }
 
-/* Estilização da barra de scroll (Webkit) */
+/* Um pouco de flavor na barra de scroll */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -26,11 +24,9 @@ body {
   border-radius: 10px;
 }
 
-/* 
-   2. ESTRUTURA DE LAYOUT (Topbar e Sidebar)
-*/
+/* Estrutura da sidebar e topbar */
 
-/* Header Verde Superior */
+/* Header verde univille, achei interessante usar as cores da uni */
 h1, .topbar {
   text-align: center;
   background: #014023;
@@ -53,9 +49,7 @@ h1, .topbar {
   flex-direction: column;
 }
 
-/* 
-   3. PÁGINA HOME 
-   */
+/* Estilo da home */
 .home {
   flex-grow: 1;
   display: flex;
@@ -95,9 +89,7 @@ h1, .topbar {
   transition: 0.1s;
 }
 
-/* 
-   4. PÁGINA DO BOARD (Kanban / Tarefas)
-    */
+/* Style pros boards */
 .board {
   display: flex;
   justify-content: center;
@@ -137,7 +129,7 @@ h1, .topbar {
   border-radius: 8px;
 }
 
-/* Card individual de tarefa */
+/* Cardzinho para cada tarefa */
 .task {
   background: #FFFFFF;
   padding: 16px;
@@ -151,11 +143,11 @@ h1, .topbar {
 }
 
 .task:hover {
-  transform: translateX(4px); /* Feedback lateral sutil */
+  transform: translateX(4px); /* Olha tentei fazer uma animacao mas nao acho que ficou boa */
   box-shadow: 0 5px 12px rgba(0,0,0,0.12);
 }
 
-/* Botoes */
+/* Botoes de Acao */
 button {
   margin-top: 15px;
   padding: 12px;
@@ -179,7 +171,7 @@ button:hover {
 
 
 
-/* Gostei de sidebar, mais uma */
+/* Sidebar */
 .sidebar {
   width: 70px;
   background: #014023;
@@ -198,7 +190,7 @@ button:hover {
   width: 220px;
 }
 
-/* Botão toggle */
+/* Hamburger */
 .toggle {
   font-size: 24px;
   margin: 20px 0;
@@ -220,7 +212,7 @@ button:hover {
   opacity: 1;
 }
 
-/*Botões da sidebar*/
+/* Botoes da sidebar */
 .menu button {
   margin-top: 20px;
   padding: 10px;
